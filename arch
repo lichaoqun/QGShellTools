@@ -1,9 +1,11 @@
 #!/bin/bash
 DIR="$(pwd)"
-NOW=`date +%Y-%m-%d_%H-%M-%S`
+NOW=`date +%m-%d_%H:%M`
+Desktop="$(cd ~/Desktop && pwd)"
 
 echo $DIR;
 echo $NOW;
+echo $Desktop;
 
 function run {
 	echo "Executing command: $@"
@@ -42,10 +44,10 @@ run_at ${DIR} "zip -qr Target.ipa Payload"
 run "rm -rf ${DIR}/Payload"
 
 # 如果桌面不存在 ipa 的文件夹 则创建一个
-mkdir -p "/Users/lichaoqun/Desktop/ipa"
+mkdir -p "$Desktop/ipa"
 
 # 移动到桌面的 ipa 文件夹中
-mv -f "${DIR}/Target.ipa"  "/Users/lichaoqun/Desktop/ipa/Target_$NOW.ipa"
+mv -f "${DIR}/Target.ipa"  "$Desktop/ipa/Target_$NOW.ipa"
 
 echo "================== ( 🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉 ) =================="
 
